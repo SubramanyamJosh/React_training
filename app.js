@@ -12,6 +12,15 @@ app.get("/employees", (req, res) => {
   }
 });
 
+app.get("/employees/:id", (req, res) => {
+  try {
+    const employeeData = data.filter((emp) => emp.id == req.params.id)[0];
+    res.status(200).json({ message: "Success", data: employeeData });
+  } catch (error) {
+    res.status(400).json({ message: "Something went wrong" });
+  }
+});
+
 app.post("/employees", (req, res) => {
   try {
     const id = data.length + 1;
